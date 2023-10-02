@@ -19,16 +19,11 @@ const migrateData = async () => {
             headers: false, // Specify that there are no headers
         }))
         .on('data', async (row) => {
-      
-            console.log(row);
             await pool.query('INSERT INTO populations (state, city, population) VALUES ($1, $2, $3)', 
                 [row[0].toLowerCase(), row[1].toLowerCase(), parseInt(row[2])]);
       
         })
         .on('end', async () => {
-            // for (const row of results) {
-            //     }
-
             console.log('Migration completed.');
             process.exit();
         });
