@@ -1,0 +1,35 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: citypopulations
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+
+  app:
+    build: .
+    ports:
+      - "5555:5555"
+    depends_on:
+      - db
+      - redis
+    environment:
+      - NODE_ENV=development
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
