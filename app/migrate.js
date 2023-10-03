@@ -14,7 +14,7 @@ const pool = new Pool({
 const migrateData = async () => {
     const results = [];
 
-    fs.createReadStream('data/city_populations.csv')
+    fs.createReadStream('../data/city_populations.csv')
         .pipe(csvParser({
             headers: false, // Specify that there are no headers
         }))
