@@ -35,8 +35,7 @@ const getPopulation = async (state, city, res) => {
 const updatePopulation = async (req, res) => {
     let { state, city } = req.params;
     const population = parseInt(req.body, 10);
-    console.log(req.body);
-    if (isNaN(population)) {
+   if (isNaN(population)) {
         return res.status(400).send('Invalid population data');
     }
 
