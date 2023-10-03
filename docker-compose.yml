@@ -22,10 +22,11 @@ services:
     ports:
       - "5555:5555"
     depends_on:
-      - db
-      - redis
+     - redis
     environment:
       - NODE_ENV=development
+    links:
+      - redis
 
   adminer:
     image: adminer
