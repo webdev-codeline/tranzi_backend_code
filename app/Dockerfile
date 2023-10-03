@@ -7,6 +7,8 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json files to the working directory
 COPY package*.json ./
 
+RUN npm install -g nodemon
+
 # Install dependencies
 RUN npm install
 
@@ -14,4 +16,4 @@ RUN npm install
 COPY . .
 
 # Specify the command to run the application
-CMD [ "npm", "start" ]
+CMD [ "nodemon" ]
